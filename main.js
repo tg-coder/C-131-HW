@@ -1,4 +1,5 @@
 status ="";
+objects = [];
 function preload()
 {
     img = loadImage('apple.jpg');
@@ -22,5 +23,19 @@ function gotResult(error, results)
     { 
     console.log(error);
     } 
-    console.log(results); 
+    console.log(results);
+    objects = results;
+    }
+    function draw()
+    {
+        if(status!="";)
+        {
+            for(i = 0; i<objects.length;i++)
+            {
+                document.getElementById("status").innerHTML = "Status = Object Detected!!"
+                percent = floor(object[i].confidence*100);
+                text(objects[i].label+""+percent+"%", objects[i].x,objects[i].y);
+                rect(objects[i].x,objects[i].y,objects[i].width,objects[i].height);
+            }
+        }
     }
